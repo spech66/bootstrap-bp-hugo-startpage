@@ -1,0 +1,15 @@
+# theme.toml template for a Hugo theme
+# See https://github.com/gohugoio/hugoThemes#themetoml for an example
+
+name = "Bootstrap-BP-Startpage"
+license = "MIT"
+licenselink = "https://github.com/spech66/bootstrap-bp-hugo-startpage/blob/master/LICENSE"
+description = "Bootstrap based Hugo startpage theme which provides out of the box best practices."
+homepage = "https://github.com/spech66/bootstrap-bp-hugo-startpage/"
+tags = ["minimalist", "single-page", "clean", "simple", "bootstrap", "responsive", "google analytics", "one-page", "light", "fast"]
+features = ["responsive", "google analytics", "bootstrap v4.1.x", "open graph", "twitter cards"]
+min_version = "0.48"
+
+[author]
+  name = "Sebastian Pech"
+  homepage = "https://www.spech.de/"
