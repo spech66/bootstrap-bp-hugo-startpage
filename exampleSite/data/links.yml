@@ -1,0 +1,32 @@
+---
+- group: Social media
+  items:
+    - title: reddit
+      url: https://www.reddit.com
+      icon: fab fa-reddit
+    - title: Facebook
+      url: https://www.facebook.com
+      icon: fab fa-facebook
+    - title: Instagram
+      url: https://www.instagram.com
+      icon: fab fa-instagram
+    - title: Spotify
+      url: https://www.spotify.com
+      icon: fab fa-spotify
+- group: Utilities
+  items:
+    - title: Confluence
+      url: https://www.atlassian.com/software/confluence
+      icon: fab fa-confluence
+    - title: D&D
+      url: https://dnd.wizards.com/
+      icon: fab fa-d-and-d
+    - title: GitHub
+      url: https://www.github.com
+      icon: fab fa-github
+    - title: Medium
+      url: https://www.medium.com
+      icon: fab fa-medium
+    - title: Amazon
+      url: https://www.amazon.de
+      icon: fab fa-amazon

@@ -20,11 +20,19 @@ You can get a zip of the latest version of the theme from the [home page](https:
 
 Most settings should be done with hugo specific variables. There are only a few (optional) additional `[params]`.
 
+* `welcomeText = "Startpage!"` is the text above the search box
+* `showGoogleSearch = true` to switch Google search box on/off
 * `startPageColumns = true` will show the start page in grouped lists
 
 ![startPageColumns = false](https://raw.githubusercontent.com/spech66/bootstrap-bp-hugo-startpage/master/images/screenshot.png)
 
 ![startPageColumns = true](https://raw.githubusercontent.com/spech66/bootstrap-bp-hugo-startpage/master/images/screenshot2.png)
+
+Define the links in a file in `data/links.yml`. This needs to be structured like this.
+
+```yml
+x
+```
 
 ## Google Analytics
 

@@ -7,7 +7,7 @@ body {
     display: flex;
     -ms-flex-align: center;
     align-items: center;
-    background: url("images/bg.jpg");
+    background: url("../images/bg.jpg");
     background-size: cover;
 }
 

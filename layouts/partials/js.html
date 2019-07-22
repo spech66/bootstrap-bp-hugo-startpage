@@ -1,0 +1,6 @@
+{{ $jquery := resources.Get "/js/jquery-3.3.1.slim.min.js" }}
+{{ $bootstrap := resources.Get "/js/bootstrap.min.js" }}
+{{ $allscript := slice $jquery $bootstrap | resources.Concat "/js/vendor.js" | minify | fingerprint }}
+<script src="{{ $allscript.RelPermalink }}"></script>
+
+{{ template "_internal/google_analytics_async.html" . }}

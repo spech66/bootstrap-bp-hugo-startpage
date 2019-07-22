@@ -25,6 +25,6 @@ paginate = 5
 [params]
   description = "Text about the site"
   #images = ["logo.jpg"]
-  showPostSummary = true
   startPageColumns = true
-  # customDateFormat = "02.01.2006"
+  welcomeText = "Bootstrap-BP hugo startpage"
+  showGoogleSearch = true

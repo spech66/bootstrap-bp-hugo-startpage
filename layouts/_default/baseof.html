@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
+    <meta charset="utf-8">
+    {{- partial "seo_schema" . -}}
+    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
+    {{- partial "head.html" . -}}
+    <body class="text-center">
+        <main role="main" class="container">
+        {{- block "main" . }}{{- end }}
+        </main>
+        {{- partial "js.html" . -}}
+    </body>
+</html>
