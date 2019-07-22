@@ -1,0 +1,29 @@
+{{ define "main" }}
+
+<div class="container mt-3 mb-3">
+    <h1><a href="{{ .RelPermalink }}">{{ .Site.Title }}</a></h1>
+
+    {{ if .Site.Params.startPageColumns }}
+        <div class="card-columns">
+            {{ range where .Pages.ByPublishDate.Reverse "Section" "post" }}
+                {{- partial "content_summary.html" . -}}
+            {{ end }}
+        </div>
+    {{ else }}
+        {{ range where .Pages.ByPublishDate.Reverse "Section" "post" }}
+            <div class="mb-3">
+                {{- partial "content_summary.html" . -}}
+            </div>
+        {{ end }}
+    {{ end }}
+</div>
+
+<!--<div class="container-flex bg-dark">
+    Test
+</div>
+
+<div class="container bg-light">
+    Test 2
+</div>-->
+
+{{ end }}

@@ -1,0 +1,30 @@
+baseURL = "https://example.com/"
+languageCode = "en-US"
+title = "My New Hugo Site"
+theme = "bootstrap-bp-hugo-theme"
+# googleAnalytics = "UA-123-45"
+copyright = "Sebastian Pech"
+enableRobotsTXT = true
+pygmentsCodeFences = true
+canonifyurls = true
+paginate = 5
+
+[sitemap]
+    changefreq = "weekly"
+    priority = 0.5
+
+[permalinks]
+    posts = "/:year/:month/:slug/"
+    post = "/:year/:month/:slug/"
+    pages = "/:slug/"
+    page = "/:slug/"
+
+[Author]  
+  name = "Sebastian Pech"
+
+[params]
+  description = "Text about the site"
+  #images = ["logo.jpg"]
+  showPostSummary = true
+  startPageColumns = true
+  # customDateFormat = "02.01.2006"
