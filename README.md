@@ -31,8 +31,23 @@ Most settings should be done with hugo specific variables. There are only a few 
 Define the links in a file in `data/links.yml`. This needs to be structured like this.
 
 ```yml
-x
+---
+- group: Social media
+  items:
+    - title: reddit
+      url: https://www.reddit.com
+      icon: fab fa-reddit
+    - title: Facebook
+      url: https://www.facebook.com
+      icon: fab fa-facebook
+- group: Utilities
+  items:
+    - title: GitHub
+      url: https://www.github.com
+      icon: fab fa-github
 ```
+
+Icons are taken from [Font Awesome](https://fontawesome.com/icons?d=gallery).
 
 ## Google Analytics
 
