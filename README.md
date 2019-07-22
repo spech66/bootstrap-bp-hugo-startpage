@@ -20,7 +20,11 @@ You can get a zip of the latest version of the theme from the [home page](https:
 
 Most settings should be done with hugo specific variables. There are only a few (optional) additional `[params]`.
 
-* `startPageColumns = true` will show the start page in a Masonry-like mode.
+* `startPageColumns = true` will show the start page in grouped lists
+
+![startPageColumns = false](https://raw.githubusercontent.com/spech66/bootstrap-bp-hugo-startpage/master/images/screenshot.png)
+
+![startPageColumns = true](https://raw.githubusercontent.com/spech66/bootstrap-bp-hugo-startpage/master/images/screenshot2.png).
 
 ## Google Analytics
 
@@ -50,3 +54,13 @@ title = "My hugo site"
 [params]
   description = "Text about the site"
 ```
+
+## Sources
+
+* Background image by [Mikael Gustafsson](https://www.artstation.com/artwork/Y2Wew)
+
+Inspired by:
+
+* [Reddit - r/startpages](https://www.reddit.com/r/startpages/)
+* [Github - 0-Tikaro - Minimum Viable Startpage](https://github.com/0-Tikaro/minimum-viable-startpage), Searchbox code
+* [Github - ViktorKare - startpage](https://github.com/ViktorKare/startpage)

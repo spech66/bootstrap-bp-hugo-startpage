@@ -1,6 +1,27 @@
-footer {
-    padding: 2.5rem 0;
-    color: #999;
-    background-color: #f9f9f9;
-    border-top: 0.05rem solid #e5e5e5;
+html, body {
+    height: 100%;
+}
+
+body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    background: url("images/bg.jpg");
+    background-size: cover;
+}
+
+h1 {
+    color: #ffffff;
+}
+
+.card {
+    opacity: 0.8;
+}
+.card:hover {
+    opacity: 1.0;
+}
+
+.cursorPointer:hover {
+    cursor: pointer;
 }
