@@ -1,7 +1,7 @@
 baseURL = "https://example.com/"
 languageCode = "en-US"
 title = "My New Hugo Site"
-theme = "bootstrap-bp-hugo-theme"
+theme = "bootstrap-bp-hugo-startpage"
 # googleAnalytics = "UA-123-45"
 copyright = "Sebastian Pech"
 enableRobotsTXT = true
@@ -27,4 +27,6 @@ paginate = 5
   #images = ["logo.jpg"]
   startPageColumns = true
   welcomeText = "Bootstrap-BP hugo startpage"
-  showGoogleSearch = true
+  showGoogleSearch = false
+  showBingSearch = false
+  showDuckDuckGoSearch = true

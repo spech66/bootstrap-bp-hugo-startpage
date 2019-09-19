@@ -22,6 +22,8 @@ Most settings should be done with hugo specific variables. There are only a few 
 
 * `welcomeText = "Startpage!"` is the text above the search box
 * `showGoogleSearch = true` to switch Google search box on/off
+* `showBingSearch = true` to switch Bing search box on/off
+* `showDuckDuckGoSearch = true` to switch DuckDuckGo search box on/off
 * `startPageColumns = true` will show the start page in grouped lists
 
 ![startPageColumns = false](https://raw.githubusercontent.com/spech66/bootstrap-bp-hugo-startpage/master/images/screenshot.png)
@@ -48,35 +50,6 @@ Define the links in a file in `data/links.yml`. This needs to be structured like
 ```
 
 Icons are taken from [Font Awesome](https://fontawesome.com/icons?d=gallery).
-
-## Google Analytics
-
-This theme uses the internal asynchronous template for Google Analytics tracking. You only have to provide your tracking id in your configuration file:
-
-```yaml
-googleAnalytics = "UA-123-45"
-```
-
-## Schema.org support
-
-Provide one author to enable the Schema.org support.
-
-```yaml
-[Author]  
-  name = "Sebastian Pech"
-```
-
-## Images, Open Graph and Twitter Cards
-
-This theme uses Hugos `feature/cover` name method to set the optimized feature image. This will also be in the Twitter Cards and Open Graph block.
-
-```yaml
-# Site Config toml
-title = "My hugo site"
-
-[params]
-  description = "Text about the site"
-```
 
 ## Sources
 

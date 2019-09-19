@@ -3,8 +3,18 @@
 <h1 class="welcomeText">{{ .Site.Params.welcomeText }}</h1>
 
 {{ if .Site.Params.showGoogleSearch }}
-<form id="search-form" action="https://www.google.com/search" method="get">
+<form id="search-form-g" action="https://www.google.com/search" method="get">
     <input id="search-bar" class="form-control" type="text" autofocus type="text" placeholder="Search Google" name="q" alt="Search Google" onkeydown="if(event.keyCode === 13) { this.form.submit(); return false; }">
+</form>
+{{ end }}
+{{ if .Site.Params.showBingSearch }}
+<form id="search-form-b" action="https://www.bing.com/search" method="get">
+    <input id="search-bar" class="form-control" type="text" autofocus type="text" placeholder="Search Bing" name="q" alt="Search Bing" onkeydown="if(event.keyCode === 13) { this.form.submit(); return false; }">
+</form>
+{{ end }}
+{{ if .Site.Params.showDuckDuckGoSearch }}
+<form id="search-form-ddg" action="https://duckduckgo.com/" method="get">
+    <input id="search-bar" class="form-control" type="text" autofocus type="text" placeholder="Search DuckDuckGo" name="q" alt="Search DuckDuckGo" onkeydown="if(event.keyCode === 13) { this.form.submit(); return false; }">
 </form>
 {{ end }}
 
