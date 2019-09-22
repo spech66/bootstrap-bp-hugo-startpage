@@ -26,7 +26,7 @@
                     <h5 class="card-title groupTitle">{{ .group }}</h5>                        
                     <ul class="list-group list-group-flush groupListList">
                         {{ range .items }}
-                            <li class="list-group-item groupListListItem"><a href="{{ .url }}" target="_self" class="groupLink"><i class="{{ .icon }}"></i>&nbsp;<span class="groupText">{{ .title }}</span></a></li>
+                            <li class="list-group-item groupListListItem"><a href="{{ .url }}" target="_self" class="groupLink"><i class="{{ .icon }}"></i>&nbsp;<span class="groupText">{{ .title | safeHTML }}</span></a></li>
                         {{ end }}
                     </ul>
                 </div>
@@ -40,7 +40,7 @@
                 <div id="iconListEntry" class="card">
                     <div class="card-body cursorPointer" onclick="location.href = '{{ .url }}'">
                         <p class="card-text"><a href="{{ .url }}" target="_self" class="iconLink"><i class="fa-5x {{ .icon }}"></i></a></p>
-                        <p class="card-text"><a href="{{ .url }}" target="_self" class="iconLink">{{ .title }}</a></p>
+                        <p class="card-text"><a href="{{ .url }}" target="_self" class="iconLink">{{ .title | safeHTML }}</a></p>
                     </div>
                 </div>
             {{ end }}
