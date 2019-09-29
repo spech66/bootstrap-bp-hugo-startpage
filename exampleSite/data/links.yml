@@ -12,7 +12,10 @@
       icon: fab fa-instagram
     - title: Spotify
       url: https://www.spotify.com
-      icon: fab fa-spotify
+      icon: fab fa-spotify  
+    - title: SPech.de Blog
+      url: https://www.spech.de
+      icon: fas fa-blog
 - group: Utilities
   items:
     - title: Confluence
@@ -22,7 +25,7 @@
       url: https://dnd.wizards.com/
       icon: fab fa-d-and-d
     - title: GitHub
-      url: https://www.github.com
+      url: https://github.com/spech66/
       icon: fab fa-github
     - title: Medium
       url: https://www.medium.com
