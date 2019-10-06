@@ -8,7 +8,7 @@ description = "Bootstrap based Hugo startpage theme which provides out of the bo
 homepage = "https://github.com/spech66/bootstrap-bp-hugo-startpage/"
 tags = ["minimalist", "single-page", "clean", "simple", "bootstrap", "responsive", "google analytics", "one-page", "light", "fast"]
 features = ["responsive", "google analytics", "bootstrap v4.1.x", "open graph", "twitter cards"]
-min_version = "0.48"
+min_version = "0.48.0"
 
 [author]
   name = "Sebastian Pech"
