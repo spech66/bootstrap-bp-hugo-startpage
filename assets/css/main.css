@@ -9,6 +9,7 @@ body {
     align-items: center;
     background: url("../images/bg.jpg");
     background-size: cover;
+    flex-wrap: wrap;
 }
 
 h1 {
