@@ -24,10 +24,26 @@ You can get a zip of the latest version of the theme from the [home page](https:
 Most settings should be done with hugo specific variables. There are only a few (optional) additional `[params]`.
 
 * `welcomeText = "Startpage!"` is the text above the search box
-* `showGoogleSearch = true` to switch Google search box on/off
-* `showBingSearch = true` to switch Bing search box on/off
-* `showDuckDuckGoSearch = true` to switch DuckDuckGo search box on/off
 * `startPageColumns = true` will show the start page in grouped lists
+
+Activate the search engine you want to use (or add a new one).
+
+```toml
+[[params.searchEngines]]
+  name = "Google"
+  activated = true
+  url = "https://www.google.com/search"
+
+[[params.searchEngines]]
+  name = "DuckDuckGo"
+  activated = true
+  url = "https://duckduckgo.com/"
+
+[[params.searchEngines]]
+  name = "Bing"
+  activated = true
+  url = "https://www.bing.com/search"
+```
 
 ![startPageColumns = false](https://raw.githubusercontent.com/spech66/bootstrap-bp-hugo-startpage/master/images/screenshot.png)
 

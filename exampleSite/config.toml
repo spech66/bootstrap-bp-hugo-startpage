@@ -27,6 +27,18 @@ paginate = 5
   #images = ["logo.jpg"]
   startPageColumns = true
   welcomeText = "Bootstrap-BP hugo startpage"
-  showGoogleSearch = false
-  showBingSearch = false
-  showDuckDuckGoSearch = true
+
+[[params.searchEngines]]
+  name = "Google"
+  activated = true
+  url = "https://www.google.com/search"
+
+[[params.searchEngines]]
+  name = "DuckDuckGo"
+  activated = true
+  url = "https://duckduckgo.com/"
+
+[[params.searchEngines]]
+  name = "Bing"
+  activated = true
+  url = "https://www.bing.com/search"
