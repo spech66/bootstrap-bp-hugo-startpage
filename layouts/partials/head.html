@@ -13,7 +13,7 @@
 {{ if .Site.RSSLink }}<link rel="alternate" href="{{ .Site.RSSLink }}" type="application/rss+xml" title="{{ .Site.Title }}"/>{{ end }}
 
 {{ $cssbootstrap := resources.Get "/css/bootstrap.min.css" }}
-{{ $cssfontawesome := resources.Get "/css/fontawesome-free-5.10.1-web-all.min.css" }}
+{{ $cssfontawesome := resources.Get "/css/fontawesome-free-5.13.0-web-all.min.css" }}
 {{ $cssmain := resources.Get "/css/main.css" }}
 {{ $allcss := slice $cssbootstrap $cssfontawesome $cssmain | resources.Concat "/css/vendor.css" | minify | fingerprint }}
 <link rel="stylesheet" href="{{ $allcss.RelPermalink }}" integrity="{{ $allcss.Data.Integrity }}">    
