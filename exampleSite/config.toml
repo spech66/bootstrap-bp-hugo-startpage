@@ -1,6 +1,7 @@
+ignoreFiles = ["content/portfolio/\\.*","content/product/\\.*","content/sketch/\\.*","content/homepage/\\.*","content/post/\\.*","content/\\.*"] # disable example pages as this is a single page
 baseURL = "https://example.com/"
 languageCode = "en-US"
-title = "My New Hugo Site"
+title = "Bootstrap-BP hugo startpage"
 theme = "bootstrap-bp-hugo-startpage"
 # googleAnalytics = "UA-123-45"
 copyright = "Sebastian Pech"
@@ -42,3 +43,5 @@ paginate = 5
   name = "Bing"
   activated = true
   url = "https://www.bing.com/search"
+
+[taxonomies]
