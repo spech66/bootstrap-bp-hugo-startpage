@@ -7,7 +7,8 @@ body {
     display: flex;
     -ms-flex-align: center;
     align-items: center;
-    background: url("../images/bg.jpg");
+    /* background: url("../images/bg.jpg"); */
+    background: url(https://cdn.jsdelivr.net/gh/misitebao/CDN@master/bg/010.jpg);
     background-size: cover;
     flex-wrap: wrap;
 }
