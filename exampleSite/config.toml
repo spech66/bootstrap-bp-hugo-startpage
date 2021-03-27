@@ -44,4 +44,10 @@ paginate = 5
   activated = true
   url = "https://www.bing.com/search"
 
+[[params.searchEngines]]
+  name = "Baidu"
+  activated = true
+  url = "https://baidu.com/s"
+  searchkey = "wd"
+
 [taxonomies]

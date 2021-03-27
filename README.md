@@ -43,6 +43,12 @@ Activate the search engine you want to use (or add a new one).
   name = "Bing"
   activated = true
   url = "https://www.bing.com/search"
+
+[[params.searchEngines]]
+  name = "Baidu"
+  activated = true
+  url = "https://baidu.com/"
+  searchkey = "kw"
 ```
 
 ![startPageColumns = false](https://raw.githubusercontent.com/spech66/bootstrap-bp-hugo-startpage/master/images/screenshot.png)

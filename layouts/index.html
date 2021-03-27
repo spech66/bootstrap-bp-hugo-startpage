@@ -6,7 +6,7 @@
     {{ range .Site.Params.searchEngines }}
         {{ if .activated }}
             <form id="search-form-{{ .name }}" class="mb-3" action="{{ .url }}" method="get">
-                <input id="search-bar-{{ .name }}" class="form-control" type="text" autofocus type="text" placeholder="Search {{ .name }}" name="q" alt="Search {{ .name }}" onkeydown="if(event.keyCode === 13) { this.form.submit(); return false; }">
+                <input id="search-bar-{{ .name }}" class="form-control" type="text" autofocus type="text" placeholder="Search {{ .name }}" name="{{ cond (isset . "searchkey") .searchkey "q" }}" alt="Search {{ .name }}" onkeydown="if(event.keyCode === 13) { this.form.submit(); return false; }">
             </form>
         {{ end }}
     {{ end }}
