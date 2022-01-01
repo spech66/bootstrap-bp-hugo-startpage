@@ -1,24 +1,26 @@
 <script type="application/ld+json">
     {
-        "@context" : "http://schema.org",
-        "@type" : "BlogPosting",
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
         "mainEntityOfPage": {
              "@type": "WebPage",
              "@id": "{{ .Site.BaseURL }}"
         },
-        "articleSection" : "{{ .Section }}",
-        "name" : "{{ .Title }}",
-        "headline" : "{{ .Title }}",
-        "description" : "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}",
-        "inLanguage" : "{{ .Lang }}",
-        "author" : "{{ range .Site.Author }}{{ . }}{{ end }}",
-        "creator" : "{{ range .Site.Author }}{{ . }}{{ end }}",
+        "articleSection": "{{ .Section }}",
+        "name": "{{ .Title }}",
+        "headline": "{{ .Title }}",
+        "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}",
+        "inLanguage": "{{ .Lang }}",
+        "author": "{{ range .Site.Author }}{{ . }}{{ end }}",
+        "creator": "{{ range .Site.Author }}{{ . }}{{ end }}",
         "publisher": "{{ range .Site.Author }}{{ . }}{{ end }}",
-        "accountablePerson" : "{{ range .Site.Author }}{{ . }}{{ end }}",
-        "copyrightHolder" : "{{ range .Site.Author }}{{ . }}{{ end }}",
-        "copyrightYear" : "{{ .Date.Format "2006" }}",
+        "accountablePerson": "{{ range .Site.Author }}{{ . }}{{ end }}",
+        "copyrightHolder": "{{ range .Site.Author }}{{ . }}{{ end }}",
+        "copyrightYear": "{{ .Date.Format "2006" }}",
         "datePublished": "{{ .Date.UTC.Format "2006-01-02T15:04:05Z" | safeHTML }}",
-        "dateModified" : "{{ .Date.UTC.Format "2006-01-02T15:04:05Z" | safeHTML }}",
+        {{ with .Lastmod -}}
+        "dateModified": "{{ .UTC.Format "2006-01-02T15:04:05Z" | safeHTML }}",
+        {{- end }}
         "url" : "{{ .RelPermalink }}",
         "wordCount" : "{{ .WordCount }}",
         "keywords" : [ {{ if isset .Params "tags" }}{{ range .Params.tags }}"{{ . }}",{{ end }}{{ end }}"Blog" ]
