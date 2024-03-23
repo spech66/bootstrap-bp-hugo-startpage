@@ -3,7 +3,6 @@ baseURL = "https://example.com/"
 languageCode = "en-US"
 title = "Bootstrap-BP hugo startpage"
 theme = "bootstrap-bp-hugo-startpage"
-# googleAnalytics = "UA-123-45"
 copyright = "Sebastian Pech"
 enableRobotsTXT = true
 pygmentsCodeFences = true
