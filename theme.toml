@@ -10,6 +10,6 @@ tags = ["minimalist", "single-page", "clean", "simple", "bootstrap", "responsive
 features = ["responsive", "bootstrap v4.1.x", "open graph", "twitter cards"]
 min_version = "0.48.0"
 
-[author]
+[params.author]
   name = "Sebastian Pech"
   homepage = "https://www.spech.de/"

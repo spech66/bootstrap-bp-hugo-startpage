@@ -7,7 +7,9 @@ copyright = "Sebastian Pech"
 enableRobotsTXT = true
 pygmentsCodeFences = true
 canonifyurls = true
-paginate = 5
+
+[pagination]
+  pagerSize = 5
 
 [sitemap]
     changefreq = "weekly"
@@ -19,7 +21,7 @@ paginate = 5
     pages = "/:slug/"
     page = "/:slug/"
 
-[Author]  
+[params.author]  
   name = "Sebastian Pech"
 
 [params]
