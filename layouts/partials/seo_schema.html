@@ -1,28 +1,90 @@
-<script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "mainEntityOfPage": {
-             "@type": "WebPage",
-             "@id": "{{ .Site.BaseURL }}"
-        },
-        "articleSection": "{{ .Section }}",
-        "name": "{{ .Title }}",
-        "headline": "{{ .Title }}",
-        "description": "{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}",
-        "inLanguage": "{{ .Lang }}",
-        "author": "{{ range .Site.Params.Author }}{{ . }}{{ end }}",
-        "creator": "{{ range .Site.Params.Author }}{{ . }}{{ end }}",
-        "publisher": "{{ range .Site.Params.Author }}{{ . }}{{ end }}",
-        "accountablePerson": "{{ range .Site.Params.Author }}{{ . }}{{ end }}",
-        "copyrightHolder": "{{ range .Site.Params.Author }}{{ . }}{{ end }}",
-        "copyrightYear": "{{ .Date.Format "2006" }}",
-        "datePublished": "{{ .Date.UTC.Format "2006-01-02T15:04:05Z" | safeHTML }}",
-        {{ with .Lastmod -}}
-        "dateModified": "{{ .UTC.Format "2006-01-02T15:04:05Z" | safeHTML }}",
-        {{- end }}
-        "url" : "{{ .RelPermalink }}",
-        "wordCount" : "{{ .WordCount }}",
-        "keywords" : [ {{ if isset .Params "tags" }}{{ range .Params.tags }}"{{ . }}",{{ end }}{{ end }}"Blog" ]
-    }
-</script>
+{{- /* Strukturierte Daten je Seitentyp: Event (Sections mit .Params.datum), BlogPosting (Blog-Posts), WebSite+Person (Startseite) */ -}}
+{{- $authorName := .Site.Params.author.name | default .Site.Params.Author -}}
+{{- if .Params.datum -}}
+{{- $name := replace (.Params.name | default .Title) "|" " " -}}
+{{- $end := "" -}}
+{{- with .Params.enddatum }}{{ $end = . }}{{ end -}}
+{{- with .Params.termine }}{{ with index (last 1 .) 0 }}{{ with .end }}{{ $end = . }}{{ end }}{{ end }}{{ end -}}
+{{- $price := "" -}}
+{{- with .Params.preis -}}
+{{- $num := index (findRE `[0-9]+(?:[.,][0-9]+)?` .) 0 -}}
+{{- if $num }}{{ $price = replace $num "," "." }}{{ else if findRE `(?i)(kostenlos|spende)` . }}{{ $price = "0" }}{{ end -}}
+{{- end -}}
+{{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" "Event"
+    "name" $name
+    "description" (or .Description (.Summary | plainify | chomp))
+    "url" .Permalink
+    "startDate" ((time.AsTime .Params.datum) | time.Format "2006-01-02T15:04:05-07:00")
+    "eventStatus" "https://schema.org/EventScheduled"
+    "eventAttendanceMode" "https://schema.org/OfflineEventAttendanceMode"
+-}}
+{{- with $authorName -}}
+{{- $schema = merge $schema (dict "organizer" (dict "@type" "Person" "name" . "url" $.Site.BaseURL) "performer" (dict "@type" "Person" "name" .)) -}}
+{{- end -}}
+{{- with .Params.ort }}{{ $schema = merge $schema (dict "location" (dict "@type" "Place" "name" . "address" ($.Params.adresse | default .))) }}{{ end -}}
+{{- with .Params.image }}{{ with $.Resources.GetMatch . }}{{ $schema = merge $schema (dict "image" .Permalink) }}{{ end }}{{ end -}}
+{{- with $end }}{{ $schema = merge $schema (dict "endDate" ((time.AsTime .) | time.Format "2006-01-02T15:04:05-07:00")) }}{{ end -}}
+{{- if ne $price "" -}}
+{{- $schema = merge $schema (dict "offers" (dict "@type" "Offer" "price" $price "priceCurrency" "EUR" "availability" "https://schema.org/InStock" "url" .Permalink)) -}}
+{{- end -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+{{- else if eq .Section "posts" -}}
+{{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" "BlogPosting"
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+    "headline" .Title
+    "description" (or .Description (.Summary | plainify | chomp))
+    "inLanguage" .Lang
+    "datePublished" (.Date.UTC.Format "2006-01-02T15:04:05Z")
+    "dateModified" (.Lastmod.UTC.Format "2006-01-02T15:04:05Z")
+    "url" .Permalink
+    "wordCount" .WordCount
+    "keywords" (.Params.tags | default (slice))
+-}}
+{{- with $authorName -}}
+{{- $schema = merge $schema (dict "author" (dict "@type" "Person" "name" . "url" $.Site.BaseURL) "publisher" (dict "@type" "Person" "name" .)) -}}
+{{- end -}}
+{{- with .Params.featured_image }}{{ with $.Resources.GetMatch (printf "*%s" .) }}{{ $schema = merge $schema (dict "image" .Permalink) }}{{ end }}{{ end -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+{{- else if .IsHome -}}
+{{- $website := dict
+    "@context" "https://schema.org"
+    "@type" "WebSite"
+    "name" .Site.Title
+    "url" .Site.BaseURL
+    "description" .Site.Params.description
+    "inLanguage" .Lang
+-}}
+{{- with $authorName -}}
+{{- $sameAs := slice -}}
+{{- with $.Site.Params.social -}}
+{{- with .github }}{{ $sameAs = $sameAs | append (printf "https://github.com/%s" .) }}{{ end -}}
+{{- with .instagram }}{{ $sameAs = $sameAs | append (printf "https://instagram.com/%s" .) }}{{ end -}}
+{{- with .facebook }}{{ $sameAs = $sameAs | append (printf "https://facebook.com/%s" .) }}{{ end -}}
+{{- with .twitter }}{{ $sameAs = $sameAs | append (printf "https://twitter.com/%s" .) }}{{ end -}}
+{{- with .linkedin }}{{ $sameAs = $sameAs | append (printf "https://linkedin.com/in/%s" .) }}{{ end -}}
+{{- with .youtube }}{{ $sameAs = $sameAs | append (printf "https://www.youtube.com/%s" .) }}{{ end -}}
+{{- with .tiktok }}{{ $sameAs = $sameAs | append (printf "https://www.tiktok.com/%s" .) }}{{ end -}}
+{{- with .vimeo }}{{ $sameAs = $sameAs | append (printf "https://vimeo.com/%s" .) }}{{ end -}}
+{{- with .pinterest }}{{ $sameAs = $sameAs | append (printf "https://www.pinterest.com/%s" .) }}{{ end -}}
+{{- with .twitch }}{{ $sameAs = $sameAs | append (printf "https://www.twitch.tv/%s" .) }}{{ end -}}
+{{- with .medium }}{{ $sameAs = $sameAs | append (printf "https://medium.com/@%s" .) }}{{ end -}}
+{{- end -}}
+{{- $person := dict
+    "@context" "https://schema.org"
+    "@type" "Person"
+    "name" .
+    "url" $.Site.BaseURL
+-}}
+{{- with $.Site.Params.authorImage }}{{ $person = merge $person (dict "image" (. | absURL)) }}{{ end -}}
+{{- with $.Site.Params.author.jobTitle }}{{ $person = merge $person (dict "jobTitle" .) }}{{ end -}}
+{{- with $.Site.Params.author.knowsAbout }}{{ $person = merge $person (dict "knowsAbout" .) }}{{ end -}}
+{{- if gt (len $sameAs) 0 }}{{ $person = merge $person (dict "sameAs" $sameAs) }}{{ end -}}
+<script type="application/ld+json">{{ slice $website $person | jsonify | safeJS }}</script>
+{{- else -}}
+<script type="application/ld+json">{{ $website | jsonify | safeJS }}</script>
+{{- end -}}
+{{- end -}}

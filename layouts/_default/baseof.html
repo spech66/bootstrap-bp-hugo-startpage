@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="{{ with .Site.LanguageCode }}{{ . }}{{ else }}en-US{{ end }}">
-    <meta charset="utf-8">
-    {{- partial "seo_schema" . -}}
-    <title>{{ block "title" . }}{{ .Site.Title }}{{ end }}</title>
-    {{- partial "head.html" . -}}
+    <head>
+        <meta charset="utf-8">
+        {{- partial "seo_schema" . -}}
+        <title>{{ block "title" . }}{{ if .IsHome }}{{ .Site.Params.homeTitle | default .Site.Title }}{{ else }}{{ .Title }} &ndash; {{ .Site.Title }}{{ end }}{{ end }}</title>
+        {{- partial "head.html" . -}}
+    </head>
     <body class="text-center">
         <main role="main" class="container">
         {{- block "main" . }}{{- end }}
