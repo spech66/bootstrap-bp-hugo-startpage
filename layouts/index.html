@@ -14,7 +14,7 @@
 
 {{ if .Site.Params.startPageColumns }}
     <div id="groupList" class="card-deck mt-3">
-        {{ range .Site.Data.links }}
+        {{ range hugo.Data.links }}
             <div id="groupListEntry" class="card">
                 <div class="card-body">
                     <h5 class="card-title groupTitle">{{ .group }}</h5>                        
@@ -29,7 +29,7 @@
     </div>
 {{ else }}
     <div id="iconList" class="card-columns mt-3">
-        {{ range .Site.Data.links }}
+        {{ range hugo.Data.links }}
             {{ range .items }}
                 <div id="iconListEntry" class="card">
                     <div class="card-body cursorPointer" onclick="location.href = '{{ .url }}'">
