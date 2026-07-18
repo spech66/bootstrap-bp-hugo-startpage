@@ -1,6 +1,6 @@
 ignoreFiles = ["content/portfolio/\\.*","content/product/\\.*","content/sketch/\\.*","content/homepage/\\.*","content/post/\\.*","content/\\.*"] # disable example pages as this is a single page
 baseURL = "https://example.com/"
-languageCode = "en-US"
+locale = "en-US"
 title = "Bootstrap-BP hugo startpage"
 theme = "bootstrap-bp-hugo-startpage"
 copyright = "Sebastian Pech"
