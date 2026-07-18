@@ -27,3 +27,8 @@ h1 {
 .cursorPointer:hover {
     cursor: pointer;
 }
+
+/* Revert Bootstrap default: no underline on hover, color change only */
+a:hover {
+    text-decoration: none;
+}
