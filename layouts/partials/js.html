@@ -1,0 +1,23 @@
+{{- if gt (len (where (.Site.Params.searchEngines | default slice) "activated" true)) 1 }}
+<script>
+(function () {
+    var form = document.querySelector(".sp-search");
+    if (!form) { return; }
+    var input = form.querySelector(".sp-search-input");
+    var buttons = form.querySelectorAll(".sp-engine");
+    function select(btn) {
+        form.action = btn.dataset.url;
+        input.name = btn.dataset.key;
+        input.placeholder = "Search " + btn.dataset.name;
+        input.setAttribute("aria-label", input.placeholder);
+        buttons.forEach(function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); });
+        try { localStorage.setItem("sp-engine", btn.dataset.name); } catch (e) {}
+    }
+    buttons.forEach(function (b) { b.addEventListener("click", function () { select(b); input.focus(); }); });
+    try {
+        var saved = localStorage.getItem("sp-engine");
+        buttons.forEach(function (b) { if (b.dataset.name === saved) { select(b); } });
+    } catch (e) {}
+})();
+</script>
+{{- end }}

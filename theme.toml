@@ -4,10 +4,10 @@
 name = "Bootstrap-BP-Startpage"
 license = "MIT"
 licenselink = "https://github.com/spech66/bootstrap-bp-hugo-startpage/blob/master/LICENSE"
-description = "Bootstrap based Hugo startpage theme which provides out of the box best practices."
+description = "Lightweight Hugo startpage theme with grouped links, icon tiles and search, which provides out of the box best practices."
 homepage = "https://github.com/spech66/bootstrap-bp-hugo-startpage/"
-tags = ["minimalist", "single-page", "clean", "simple", "bootstrap", "responsive", "one-page", "light", "fast"]
-features = ["responsive", "bootstrap v4.1.x", "open graph", "twitter cards"]
+tags = ["minimalist", "single-page", "clean", "simple", "responsive", "one-page", "light", "fast"]
+features = ["responsive", "svg icons", "webp background", "open graph", "twitter cards"]
 min_version = "0.158.0"
 
 [author]

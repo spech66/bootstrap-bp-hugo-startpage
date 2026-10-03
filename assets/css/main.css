@@ -1,34 +1,196 @@
-html,
-body {
-    height: 100%;
+/* bootstrap-bp-hugo-startpage: small standalone stylesheet, no framework needed.
+   Override or extend it with assets/css/custom.css in your site. */
+
+:root {
+    --sp-text: #ffffff;
+    --sp-text-muted: rgba(255, 255, 255, .72);
+    --sp-glass: rgba(12, 20, 32, .5);
+    --sp-glass-hover: rgba(255, 255, 255, .14);
+    --sp-border: rgba(255, 255, 255, .14);
+    --sp-accent: #1f5f8b;
+    --sp-radius: 14px;
+    --sp-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { min-height: 100%; }
+
 body {
-    display: -ms-flexbox;
+    margin: 0;
+    min-height: 100vh;
     display: flex;
-    -ms-flex-align: center;
     align-items: center;
-    background: url("../images/bg.jpg");
-    background-size: cover;
-    flex-wrap: wrap;
+    font-family: var(--sp-font);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--sp-text);
+    background: #0c1420 var(--sp-bg) center / cover no-repeat fixed;
 }
 
-h1 {
-    color: #ffffff;
+@media (max-width: 960px) {
+    body { background-image: var(--sp-bg-small, var(--sp-bg)); background-attachment: scroll; }
 }
 
-.card {
-    opacity: 0.8;
-}
-.card:hover {
-    opacity: 1;
+/* Gradient over the background for readable text on any image */
+.sp-shade {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(8, 14, 24, .15), rgba(8, 14, 24, .55));
+    pointer-events: none;
 }
 
-.cursorPointer:hover {
+.sp-main {
+    position: relative;
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 40px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.bp-icon { display: inline-block; width: auto; height: 1.05em; flex: none; fill: currentColor; overflow: visible; }
+
+/* Glass surface shared by cards, tiles and the tagline */
+.sp-card, .sp-tile, .sp-tagline {
+    background: var(--sp-glass);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+    border: 1px solid var(--sp-border);
+}
+
+/* Head */
+.sp-head { text-align: center; margin-bottom: 28px; }
+
+.sp-welcome {
+    margin: 0 0 10px;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -.01em;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, .35);
+}
+
+.sp-tagline {
+    display: inline-block;
+    margin: 0;
+    padding: 6px 16px;
+    border-radius: 1.25em;
+    font-size: .95rem;
+    color: rgba(255, 255, 255, .9);
+}
+
+/* Search */
+.sp-search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 0 22px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .94);
+    color: #445566;
+}
+
+.sp-search-input {
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    color: #16202c;
+    outline: none;
+}
+
+.sp-search:focus-within { box-shadow: 0 0 0 3px rgba(255, 255, 255, .45); }
+
+.sp-engines { display: flex; flex-wrap: wrap; gap: 2px; }
+
+.sp-engine {
+    border: 0;
+    background: none;
+    padding: 2px 6px;
+    border-radius: 999px;
+    font: inherit;
+    font-size: .75rem;
+    color: #778899;
     cursor: pointer;
 }
 
-/* Revert Bootstrap default: no underline on hover, color change only */
-a:hover {
-    text-decoration: none;
+.sp-engine[aria-pressed="true"] { color: var(--sp-accent); font-weight: 700; }
+.sp-engine:hover { color: #16202c; }
+
+/* startPageColumns = true: groups as glass cards */
+.sp-groups {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    align-items: start;
+    gap: 16px;
+    width: 100%;
+    /* as wide as the number of groups needs, set in index.html */
+    max-width: calc(var(--sp-cols, 4) * 284px);
+}
+
+.sp-card { border-radius: var(--sp-radius); padding: 16px 8px 8px; }
+
+.sp-group-title {
+    margin: 0 12px 8px;
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--sp-text-muted);
+}
+
+.sp-list { list-style: none; margin: 0; padding: 0; }
+
+.sp-list a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    font-size: .95rem;
+}
+
+.sp-list a .bp-icon { width: 1.2em; opacity: .85; }
+
+/* startPageColumns = false: icon tiles */
+.sp-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 14px;
+    width: 100%;
+    max-width: 680px;
+}
+
+.sp-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 22px 10px 16px;
+    border-radius: var(--sp-radius);
+    font-size: .9rem;
+    text-align: center;
+}
+
+.sp-tile-icon { height: 2.5rem; }
+
+.sp-home { display: inline-flex; flex-direction: row; padding: 12px 20px; }
+.sp-home .sp-tile-icon { height: 1.25rem; }
+
+/* Hover and keyboard focus */
+.sp-list a:hover, .sp-list a:focus-visible { background: var(--sp-glass-hover); }
+.sp-tile:hover, .sp-tile:focus-visible { background: rgba(12, 20, 32, .65); }
+a:focus-visible, .sp-engine:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }
+
+@media (prefers-reduced-transparency: reduce) {
+    .sp-card, .sp-tile, .sp-tagline { background: rgba(12, 20, 32, .85); -webkit-backdrop-filter: none; backdrop-filter: none; }
 }

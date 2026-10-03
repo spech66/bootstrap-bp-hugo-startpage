@@ -1,44 +1,48 @@
 {{ define "main" }}
 
-<h1 class="welcomeText">{{ .Site.Params.welcomeText }}</h1>
+<header class="sp-head">
+    <h1 class="sp-welcome">{{ .Site.Params.welcomeText }}</h1>
+    {{- with .Site.Params.tagline }}
+    <p class="sp-tagline">{{ . }}</p>
+    {{- end }}
+</header>
 
-{{ if .Site.Params.searchEngines }}
-    {{ range .Site.Params.searchEngines }}
-        {{ if .activated }}
-            <form id="search-form-{{ .name }}" class="mb-3" action="{{ .url }}" method="get">
-                <input id="search-bar-{{ .name }}" class="form-control" type="text" autofocus type="text" placeholder="Search {{ .name }}" name="{{ cond (isset . "searchkey") .searchkey "q" }}" alt="Search {{ .name }}" onkeydown="if(event.keyCode === 13) { this.form.submit(); return false; }">
-            </form>
-        {{ end }}
-    {{ end }}
-{{ end }}
+{{- $engines := where (.Site.Params.searchEngines | default slice) "activated" true }}
+{{- with $engines }}
+    {{- $first := index . 0 }}
+    <form class="sp-search" action="{{ $first.url }}" method="get" role="search">
+        {{ partial "icon.html" "fas fa-search" }}
+        <input class="sp-search-input" type="search" name="{{ $first.searchkey | default "q" }}" placeholder="Search {{ $first.name }}" aria-label="Search {{ $first.name }}" autofocus>
+        {{- if gt (len .) 1 }}
+        <span class="sp-engines">
+            {{- range $i, $e := . }}
+            <button type="button" class="sp-engine" data-url="{{ $e.url }}" data-key="{{ $e.searchkey | default "q" }}" data-name="{{ $e.name }}" aria-pressed="{{ if eq $i 0 }}true{{ else }}false{{ end }}">{{ $e.name }}</button>
+            {{- end }}
+        </span>
+        {{- end }}
+    </form>
+{{- end }}
 
 {{ if .Site.Params.startPageColumns }}
-    <div id="groupList" class="card-deck mt-3">
-        {{ range hugo.Data.links }}
-            <div id="groupListEntry" class="card">
-                <div class="card-body">
-                    <h5 class="card-title groupTitle">{{ .group }}</h5>                        
-                    <ul class="list-group list-group-flush groupListList">
-                        {{ range .items }}
-                            <li class="list-group-item groupListListItem"><a href="{{ .url }}" target="_self" class="groupLink"><i class="{{ .icon }}"></i>&nbsp;<span class="groupText">{{ .title | safeHTML }}</span></a></li>
-                        {{ end }}
-                    </ul>
-                </div>
-            </div>
-        {{ end }}
+    <div class="sp-groups" style="--sp-cols: {{ len hugo.Data.links }}">
+        {{- range hugo.Data.links }}
+        <section class="sp-card">
+            <h2 class="sp-group-title">{{ .group }}</h2>
+            <ul class="sp-list">
+                {{- range .items }}
+                <li><a href="{{ .url }}">{{ partial "icon.html" .icon }}<span>{{ .title | safeHTML }}</span></a></li>
+                {{- end }}
+            </ul>
+        </section>
+        {{- end }}
     </div>
 {{ else }}
-    <div id="iconList" class="card-columns mt-3">
-        {{ range hugo.Data.links }}
-            {{ range .items }}
-                <div id="iconListEntry" class="card">
-                    <div class="card-body cursorPointer" onclick="location.href = '{{ .url }}'">
-                        <p class="card-text"><a href="{{ .url }}" target="_self" class="iconLink"><i class="fa-5x {{ .icon }}"></i></a></p>
-                        <p class="card-text"><a href="{{ .url }}" target="_self" class="iconLink">{{ .title | safeHTML }}</a></p>
-                    </div>
-                </div>
-            {{ end }}
-        {{ end }}
+    <div class="sp-tiles">
+        {{- range hugo.Data.links }}
+            {{- range .items }}
+        <a class="sp-tile" href="{{ .url }}">{{ partial "icon.html" (dict "name" .icon "class" "sp-tile-icon") }}<span>{{ .title | safeHTML }}</span></a>
+            {{- end }}
+        {{- end }}
     </div>
 {{ end }}
 

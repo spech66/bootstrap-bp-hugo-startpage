@@ -1,0 +1,35 @@
+{{- /*
+  Inline SVG icon from data/bpicons.json (Font Awesome Free 5.15.4 glyphs, CC BY 4.0).
+  Only the icons a page uses end up in its HTML, no icon font is loaded.
+
+  Accepts the Font Awesome class string from links.yml ("fab fa-github", "fas fa-blog")
+  or a plain name ("github"). Without a style prefix solid, brands and regular are tried.
+
+  Usage:
+    {{ partial "icon.html" "fab fa-github" }}
+    {{ partial "icon.html" (dict "name" "fas fa-search" "class" "icon-lg") }}
+*/ -}}
+{{- $name := . -}}
+{{- $class := "" -}}
+{{- if reflect.IsMap . -}}
+    {{- $name = .name -}}
+    {{- $class = .class | default "" -}}
+{{- end -}}
+{{- $styles := slice "fas" "fab" "far" -}}
+{{- $glyph := "" -}}
+{{- range split (trim $name " ") " " -}}
+    {{- if in (slice "fas" "fab" "far") . }}{{ $styles = slice . }}{{ end -}}
+{{- end -}}
+{{- range split (trim $name " ") " " -}}
+    {{- $n := strings.TrimPrefix "fa-" . -}}
+    {{- if not (in (slice "fas" "fab" "far" "fa") .) -}}
+        {{- range $styles -}}
+            {{- if not $glyph }}{{ with index hugo.Data.bpicons (printf "%s-%s" . $n) }}{{ $glyph = . }}{{ end }}{{ end -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+{{- with $glyph -}}
+<svg class="bp-icon{{ with $class }} {{ . }}{{ end }}" viewBox="0 -448 {{ .w }} 512" aria-hidden="true" focusable="false"><path transform="scale(1,-1)" d="{{ .d }}"/></svg>
+{{- else -}}
+    {{- if $name }}{{ warnf "bootstrap-bp-hugo-startpage: icon %q not found in data/bpicons.json" $name }}{{ end -}}
+{{- end -}}

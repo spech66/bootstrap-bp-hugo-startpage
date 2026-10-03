@@ -1,6 +1,6 @@
 # Bootstrap-BP hugo startpage
 
-Bootstrap based Hugo startpage theme which provides out of the box best practices.
+Lightweight Hugo startpage theme which provides out of the box best practices: about 3 KB of CSS, inline SVG icons and a WebP background, no CSS framework or icon font.
 This theme is a combination of my [Bootstrap-BP hugo theme](https://github.com/spech66/bootstrap-bp-hugo-theme) and my [startpage](https://github.com/spech66/startpage).
 Instead of rendering the items on-the-fly as in the startpage theme the **Bootstrap-BP hugo startpage** will generate a complete single page site.
 
@@ -24,7 +24,13 @@ You can get a zip of the latest version of the theme from the [home page](https:
 Most settings should be done with hugo specific variables. There are only a few (optional) additional `[params]`.
 
 * `welcomeText = "Startpage!"` is the text above the search box
-* `startPageColumns = true` will show the start page in grouped lists
+* `tagline = "All your links on one page"` (optional) is shown below the welcome text
+* `startPageColumns = true` will show the start page in grouped lists, otherwise as icon tiles
+* `background = "images/my-background.jpg"` (optional) is an image in your site's `assets/` folder. It is converted to WebP in two sizes. Default is the theme's background.
+
+Custom styles go to `assets/css/custom.css` in your site. Colors and the glass effect are CSS variables (`--sp-glass`, `--sp-accent`, ...) in the theme's `assets/css/main.css`.
+
+All activated search engines share one search field, the visitor switches between them below the field (the choice is remembered in the browser).
 
 Activate the search engine you want to use (or add a new one).
 
@@ -74,7 +80,14 @@ Define the links in a file in `data/links.yml`. This needs to be structured like
       icon: fab fa-github
 ```
 
-Icons are taken from [Font Awesome](https://fontawesome.com/icons?d=gallery).
+Icons are [Font Awesome Free 5.15.4](https://fontawesome.com/v5/search?m=free) glyphs, rendered as inline SVG (no icon font, no Bootstrap or other CSS framework is loaded). Use the Font Awesome classes as before (`fab fa-github`, `fas fa-blog`, `far fa-heart`) or just the name (`github`). The glyphs are stored in `data/bpicons.json`, add your own icons there.
+
+## Upgrading from older versions
+
+Bootstrap 4 and the Font Awesome icon font are no longer part of the theme, `links.yml` and the settings keep working.
+
+- The background moved from `static/images/bg.jpg` to `assets/images/bg.jpg`. A site that replaced it in `static/images/bg.jpg` should move the file to `assets/images/` and set `background = "images/bg.jpg"`, or use any other name.
+- Own templates or content using Bootstrap classes need their own CSS in `assets/css/custom.css`.
 
 ## Sources
 

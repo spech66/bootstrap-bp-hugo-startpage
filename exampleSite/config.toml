@@ -29,6 +29,7 @@ canonifyurls = true
   #images = ["logo.jpg"]
   startPageColumns = true
   welcomeText = "Bootstrap-BP hugo startpage"
+  tagline = "All your links on one page"
 
 [[params.searchEngines]]
   name = "Google"

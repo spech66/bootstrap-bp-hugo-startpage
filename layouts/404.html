@@ -1,0 +1,9 @@
+{{ define "title" }}404 &ndash; {{ .Site.Title }}{{ end }}
+
+{{ define "main" }}
+<header class="sp-head">
+    <h1 class="sp-welcome">404</h1>
+    <p class="sp-tagline">Page not found</p>
+</header>
+<p><a class="sp-tile sp-home" href="{{ "/" | relLangURL }}">{{ partial "icon.html" (dict "name" "fas fa-home" "class" "sp-tile-icon") }}<span>{{ .Site.Params.welcomeText | default .Site.Title }}</span></a></p>
+{{ end }}
