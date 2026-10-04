@@ -6,6 +6,7 @@ Instead of rendering the items on-the-fly as in the startpage theme the **Bootst
 
 Other themes by Sebastian Pech: [Bootstrap-BP](https://github.com/spech66/bootstrap-bp-hugo-theme), [Flex-BP hugo CV](https://github.com/spech66/flex-bp-hugo-cv),
 [Bootstrap-BP hugo startpage](https://github.com/spech66/bootstrap-bp-hugo-startpage).
+Best practices and ideas for Hugo: [hugo-best-practices](https://github.com/spech66/hugo-best-practices).
 
 ## Install the theme
 
@@ -98,3 +99,7 @@ Inspired by:
 * [Reddit - r/startpages](https://www.reddit.com/r/startpages/)
 * [Github - 0-Tikaro - Minimum Viable Startpage](https://github.com/0-Tikaro/minimum-viable-startpage), Searchbox code
 * [Github - ViktorKare - startpage](https://github.com/ViktorKare/startpage)
+
+## Sites using this theme
+
+- [sebastianpech.com](https://www.sebastianpech.com/)
